@@ -67,4 +67,18 @@ public class RoomController {
         }
         roomDao.deleteById(room.getId());
     }
+
+    @PutMapping(path = "/{id}/switchWindow")
+    public RoomDto switchStatusOfWindow(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+        Iterator iterator = room.getListOfWindow().iterator();
+
+        while (iterator.hasNext())
+        {
+            Window window = windowDao.getOne(((Window)iterator.next()).getId());
+            window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
+        }
+
+        return new RoomDto(room);
+    }
 }
