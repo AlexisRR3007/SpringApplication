@@ -1,56 +1,32 @@
-package com.emse.spring.faircorp.model;
+package com.emse.spring.faircorp.api;
 
+import com.emse.spring.faircorp.model.Heater;
+import com.emse.spring.faircorp.model.Room;
+import com.emse.spring.faircorp.model.Window;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "ROOM")
-public class Room {
-
-    @Id
-    @GeneratedValue
+public class RoomDto {
     private Long id;
-
-    @Column(nullable=false)
-    private int floor;
-
-    @Column(nullable=false)
     private String name;
-
-    @Column
+    private int floor;
     private Double currentTemperature;
-
-    @Column
     private Double targetTemperature;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "room")
     private Set<Heater> listOfHeater;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "room")
     private Set<Window> listOfWindow;
 
-    // @JsonManagedReference
-    // @ManyToOne(optional = false)
-    // private Building building;
-
-    public Room() {
+    public RoomDto() {
     }
 
-    public Room(int floor, String name) {
-        this.floor = floor;
-        this.name = name;
-    }
-
-    public Room(int floor, String name, Double currentTemperature, Double targetTemperature) {
-        this.floor = floor;
-        this.name = name;
-        this.currentTemperature = currentTemperature;
-        this.targetTemperature = targetTemperature;
+    public RoomDto(Room room) {
+        this.id = room.getId();
+        this.name = room.getName();
+        this.floor = room.getFloor();
+        this.currentTemperature = room.getCurrentTemperature();
+        this.targetTemperature = room.getTargetTemperature();
+        this.listOfHeater = room.getListOfHeater();
+        this.listOfWindow = room.getListOfWindow();
     }
 
     public Long getId() {
@@ -61,20 +37,20 @@ public class Room {
         this.id = id;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
     public Double getCurrentTemperature() {
