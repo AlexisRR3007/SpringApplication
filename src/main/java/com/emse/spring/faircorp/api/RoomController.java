@@ -8,7 +8,7 @@ import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
-import org.springframework.http.MediaType;
+import com.emse.spring.faircorp.model.HeaterStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/rooms")
 @Transactional
 public class RoomController {
@@ -77,6 +78,20 @@ public class RoomController {
         {
             Window window = windowDao.getOne(((Window)iterator.next()).getId());
             window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
+        }
+
+        return new RoomDto(room);
+    }
+
+    @PutMapping(path = "/{id}/switchHeater")
+    public RoomDto switchStatusOfHeater(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+        Iterator iterator = room.getListOfHeater().iterator();
+
+        while (iterator.hasNext())
+        {
+            Heater heater = heaterDao.getOne(((Heater)iterator.next()).getId());
+            heater.setHeaterStatus(heater.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
         }
 
         return new RoomDto(room);
