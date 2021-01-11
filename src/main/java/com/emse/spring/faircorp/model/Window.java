@@ -3,8 +3,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
+/**
+ * Window entity which represent a window which is in the room
+ */
 @Entity
-@Table(name = "RWINDOW")
+@Table(name = "TWINDOW")
 public class Window {
     @Id
     @GeneratedValue

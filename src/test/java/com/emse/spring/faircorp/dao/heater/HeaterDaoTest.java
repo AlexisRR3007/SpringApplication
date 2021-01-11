@@ -1,8 +1,8 @@
-package com.emse.spring.faircorp.dao;
+package com.emse.spring.faircorp.dao.heater;
 
+import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
-import com.emse.spring.faircorp.model.Window;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,8 +27,8 @@ class HeaterDaoTest {
 
     @Test
     public void shouldDeleteAllHeatersFromARoomFromHeaterDao() {
-        heaterDao.deleteAllHeatersFromARoomFromHeaterDao(-10L);
-        List<Heater> result = heaterDao.getAllHeatersFromARoomFromHeaterDao(-10L);
+        heaterDao.deleteAllHeatersOfRoom(-10L);
+        List<Heater> result = heaterDao.getAllHeatersOfRoom(-10L);
         Assertions.assertThat(result).isEmpty();
     }
 }

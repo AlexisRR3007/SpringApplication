@@ -1,0 +1,53 @@
+package com.emse.spring.faircorp.api.heater;
+
+import com.emse.spring.faircorp.model.Heater;
+import com.emse.spring.faircorp.model.HeaterStatus;
+
+public class HeaterCommand {
+    private Long id;
+    private String name;
+    private HeaterStatus heaterStatus;
+    private String roomName;
+
+    public HeaterCommand() {
+    }
+
+    public HeaterCommand(Heater heater) {
+        this.id = heater.getId();
+        this.name = heater.getName();
+        this.heaterStatus = heater.getHeaterStatus();
+        this.roomName = heater.getRoom().getName();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public HeaterStatus getHeaterStatus() {
+        return heaterStatus;
+    }
+
+    public void setHeaterStatus(HeaterStatus heaterStatus) {
+        this.heaterStatus = heaterStatus;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+}

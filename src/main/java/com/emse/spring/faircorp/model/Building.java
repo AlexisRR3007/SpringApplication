@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Building entity, it contains all the other entities.
+ * It is link to the floors of the buildings
+ */
 @Entity
-@Table(name = "BUILDING")
+@Table(name = "TBUILDING")
 public class Building {
 
     @Id
@@ -17,8 +21,8 @@ public class Building {
     private String name;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "")
-    private Set<Room> listOfRoom;
+    @OneToMany(mappedBy = "building")
+    private Set<Floor> listOfFloors;
 
     public Building() {
     }
@@ -43,11 +47,12 @@ public class Building {
         this.name = name;
     }
 
-    public Set<Room> getListOfRoom() {
-        return listOfRoom;
+    public Set<Floor> getListOfFloors() {
+        return listOfFloors;
     }
 
-    public void setListOfRoom(Set<Room> listOfRoom) {
-        this.listOfRoom = listOfRoom;
+    public void setListOfFloors(Set<Floor> listOfFloors) {
+        this.listOfFloors = listOfFloors;
     }
+
 }

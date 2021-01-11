@@ -6,16 +6,21 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Room entity which represent a room in the floor.
+ * Contain a link to the floor and a list of the heaters and
+ * the windows of the room
+ */
 @Entity
-@Table(name = "ROOM")
+@Table(name = "TROOM")
 public class Room {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable=false)
-    private int floor;
+    @ManyToOne(optional = false)
+    private Floor floor;
 
     @Column(nullable=false)
     private String name;
@@ -28,25 +33,21 @@ public class Room {
 
     @JsonBackReference
     @OneToMany(mappedBy = "room")
-    private Set<Heater> listOfHeater;
+    private Set<Heater> listOfHeaters;
 
     @JsonBackReference
     @OneToMany(mappedBy = "room")
-    private Set<Window> listOfWindow;
-
-    // @JsonManagedReference
-    // @ManyToOne(optional = false)
-    // private Building building;
+    private Set<Window> listOfWindows;
 
     public Room() {
     }
 
-    public Room(int floor, String name) {
+    public Room(Floor floor, String name) {
         this.floor = floor;
         this.name = name;
     }
 
-    public Room(int floor, String name, Double currentTemperature, Double targetTemperature) {
+    public Room(Floor floor, String name, Double currentTemperature, Double targetTemperature) {
         this.floor = floor;
         this.name = name;
         this.currentTemperature = currentTemperature;
@@ -61,11 +62,11 @@ public class Room {
         this.id = id;
     }
 
-    public int getFloor() {
+    public Floor getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Floor floor) {
         this.floor = floor;
     }
 
@@ -93,19 +94,19 @@ public class Room {
         this.targetTemperature = targetTemperature;
     }
 
-    public Set<Heater> getListOfHeater() {
-        return listOfHeater;
+    public Set<Heater> getListOfHeaters() {
+        return listOfHeaters;
     }
 
-    public void setListOfHeater(Set<Heater> listOfHeater) {
-        this.listOfHeater = listOfHeater;
+    public void setListOfHeaters(Set<Heater> listOfHeaters) {
+        this.listOfHeaters = listOfHeaters;
     }
 
-    public Set<Window> getListOfWindow() {
-        return listOfWindow;
+    public Set<Window> getListOfWindows() {
+        return listOfWindows;
     }
 
-    public void setListOfWindow(Set<Window> listOfWindow) {
-        this.listOfWindow = listOfWindow;
+    public void setListOfWindows(Set<Window> listOfWindows) {
+        this.listOfWindows = listOfWindows;
     }
 }

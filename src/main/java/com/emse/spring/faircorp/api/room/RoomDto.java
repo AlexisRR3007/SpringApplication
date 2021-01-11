@@ -1,27 +1,32 @@
-package com.emse.spring.faircorp.api;
+package com.emse.spring.faircorp.api.room;
 
+import com.emse.spring.faircorp.model.Floor;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 
 import java.util.Set;
 
-public class RoomCommand {
+public class RoomDto {
     private Long id;
     private String name;
-    private int floor;
+    private Floor floor;
     private Double currentTemperature;
     private Double targetTemperature;
+    private Set<Heater> listOfHeaters;
+    private Set<Window> listOfWindows;
 
-    public RoomCommand() {
+    public RoomDto() {
     }
 
-    public RoomCommand(Room room) {
+    public RoomDto(Room room) {
         this.id = room.getId();
         this.name = room.getName();
         this.floor = room.getFloor();
         this.currentTemperature = room.getCurrentTemperature();
         this.targetTemperature = room.getTargetTemperature();
+        this.listOfHeaters = room.getListOfHeaters();
+        this.listOfWindows = room.getListOfWindows();
     }
 
     public Long getId() {
@@ -40,11 +45,11 @@ public class RoomCommand {
         this.name = name;
     }
 
-    public int getFloor() {
+    public Floor getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Floor floor) {
         this.floor = floor;
     }
 
@@ -62,5 +67,21 @@ public class RoomCommand {
 
     public void setTargetTemperature(Double targetTemperature) {
         this.targetTemperature = targetTemperature;
+    }
+
+    public Set<Heater> getListOfHeaters() {
+        return listOfHeaters;
+    }
+
+    public void setListOfHeaters(Set<Heater> listOfHeaters) {
+        this.listOfHeaters = listOfHeaters;
+    }
+
+    public Set<Window> getListOfWindows() {
+        return listOfWindows;
+    }
+
+    public void setListOfWindows(Set<Window> listOfWindows) {
+        this.listOfWindows = listOfWindows;
     }
 }

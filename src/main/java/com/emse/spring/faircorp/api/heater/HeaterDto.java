@@ -1,15 +1,14 @@
-package com.emse.spring.faircorp.api;
+package com.emse.spring.faircorp.api.heater;
 
+import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
-import com.emse.spring.faircorp.model.Window;
 
 public class HeaterDto {
     private Long id;
     private String name;
     private HeaterStatus heaterStatus;
-    private String roomName;
-    private Long roomId;
+    private Room room;
 
     public HeaterDto() {
     }
@@ -18,8 +17,7 @@ public class HeaterDto {
         this.id = heater.getId();
         this.name = heater.getName();
         this.heaterStatus = heater.getHeaterStatus();
-        this.roomName = heater.getRoom().getName();
-        this.roomId = heater.getRoom().getId();
+        this.room = heater.getRoom();
     }
 
     public Long getId() {
@@ -46,19 +44,11 @@ public class HeaterDto {
         this.heaterStatus = heaterStatus;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room roomName) {
+        this.room = room;
     }
 }

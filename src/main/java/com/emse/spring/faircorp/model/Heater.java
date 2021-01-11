@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
+/**
+ * Heater entity which represent a heater which is in the room
+ */
 @Entity
-@Table(name = "HEATER")
+@Table(name = "THEATER")
 public class Heater {
     @Id
     @GeneratedValue

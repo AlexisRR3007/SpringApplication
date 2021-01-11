@@ -1,7 +1,7 @@
-package com.emse.spring.faircorp.api;
+package com.emse.spring.faircorp.api.window;
 
-import com.emse.spring.faircorp.dao.RoomDao;
-import com.emse.spring.faircorp.dao.WindowDao;
+import com.emse.spring.faircorp.dao.room.RoomDao;
+import com.emse.spring.faircorp.dao.window.WindowDao;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
@@ -43,17 +43,17 @@ public class WindowController {
     }
 
     @PostMapping
-    public WindowDto create(@RequestBody WindowDto dto) {
+    public WindowDto create(@RequestBody WindowCommand cmd) {
         // WindowDto must always contain the window room
-        Room room = roomDao.getOne(dto.getRoomId());
+        Room room = roomDao.getRoomByName(cmd.getRoomName());
         Window window = null;
         // On creation id is not defined
-        if (dto.getId() == null) {
-            window = windowDao.save(new Window(dto.getName(), dto.getWindowStatus(),room));
+        if (cmd.getId() == null) {
+            window = windowDao.save(new Window(cmd.getName(), cmd.getWindowStatus(),room));
         }
         else {
-            window = windowDao.getOne(dto.getId());
-            window.setWindowStatus(dto.getWindowStatus());
+            window = windowDao.getWindow(cmd.getId());
+            window.setWindowStatus(cmd.getWindowStatus());
         }
         return new WindowDto(window);
     }

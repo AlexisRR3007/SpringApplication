@@ -1,4 +1,4 @@
-package com.emse.spring.faircorp.dao;
+package com.emse.spring.faircorp.dao.window;
 
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
@@ -13,7 +13,7 @@ public class WindowDaoCustomImpl implements WindowDaoCustom {
     private EntityManager em;
 
     @Override
-    public List<Window> findRoomOpenWindows(Long id) {
+    public List<Window> getOpenWindowsOfRoom(Long id) {
         String jpql = "select w from Window w where w.room.id = :id and w.windowStatus= :status";
         return em.createQuery(jpql, Window.class)
                 .setParameter("id", id)
@@ -22,14 +22,7 @@ public class WindowDaoCustomImpl implements WindowDaoCustom {
     }
 
     @Override
-    public void deleteAllWindowsFromARoom(Long RoomId) {
-        String jpql = "DELETE FROM Window w WHERE w.room.id = :id";
-        em.createQuery(jpql)
-                .setParameter("id", RoomId).executeUpdate();
-    }
-
-    @Override
-    public List<Window> getAllWindowsFromARoom(Long RoomId) {
+    public List<Window> getAllWindowsOfRoom(Long RoomId) {
         String jpql = "select w from Window w where w.room.id = :id";
         return em.createQuery(jpql, Window.class)
                 .setParameter("id", RoomId)

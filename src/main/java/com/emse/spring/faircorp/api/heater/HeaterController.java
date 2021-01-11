@@ -1,7 +1,8 @@
-package com.emse.spring.faircorp.api;
+package com.emse.spring.faircorp.api.heater;
 
-import com.emse.spring.faircorp.dao.RoomDao;
-import com.emse.spring.faircorp.dao.HeaterDao;
+
+import com.emse.spring.faircorp.dao.room.RoomDao;
+import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
@@ -17,49 +18,49 @@ import java.util.stream.Collectors;
 @Transactional
 public class HeaterController {
 
-    private final HeaterDao HeaterDao;
+    private final HeaterDao heaterDao;
     private final RoomDao roomDao;
 
-    public HeaterController(HeaterDao HeaterDao, RoomDao roomDao) {
-        this.HeaterDao = HeaterDao;
+    public HeaterController(HeaterDao heaterDao, RoomDao roomDao) {
+        this.heaterDao = heaterDao;
         this.roomDao = roomDao;
     }
 
     @GetMapping
     public List<HeaterDto> findAll() {
-        return HeaterDao.findAll().stream().map(HeaterDto::new).collect(Collectors.toList());
+        return heaterDao.findAll().stream().map(HeaterDto::new).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/{id}")
     public HeaterDto findById(@PathVariable Long id) {
-        return HeaterDao.findById(id).map(HeaterDto::new).orElse(null);
+        return heaterDao.findById(id).map(HeaterDto::new).orElse(null);
     }
 
     @PutMapping(path = "/{id}/switch")
     public HeaterDto switchStatus(@PathVariable Long id) {
-        Heater Heater = HeaterDao.findById(id).orElseThrow(IllegalArgumentException::new);
+        Heater Heater = heaterDao.findById(id).orElseThrow(IllegalArgumentException::new);
         Heater.setHeaterStatus(Heater.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
         return new HeaterDto(Heater);
     }
 
     @PostMapping
-    public HeaterDto create(@RequestBody HeaterDto dto) {
-        // HeaterDto must always contain the Heater room
-        Room room = roomDao.getOne(dto.getRoomId());
-        Heater Heater = null;
+    public HeaterDto create(@RequestBody HeaterCommand cmd) {
+        // HeaterDto must always contain the heater room
+        Room room = roomDao.getRoomByName(cmd.getRoomName());
+        Heater heater = null;
         // On creation id is not defined
-        if (dto.getId() == null) {
-            Heater = HeaterDao.save(new Heater(dto.getName(), dto.getHeaterStatus(),room));
+        if (cmd.getId() == null) {
+            heater = heaterDao.save(new Heater(cmd.getName(), cmd.getHeaterStatus(),room));
         }
         else {
-            Heater = HeaterDao.getOne(dto.getId());
-            Heater.setHeaterStatus(dto.getHeaterStatus());
+            heater = heaterDao.getHeater(cmd.getId());
+            heater.setHeaterStatus(cmd.getHeaterStatus());
         }
-        return new HeaterDto(Heater);
+        return new HeaterDto(heater);
     }
 
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
-        HeaterDao.deleteById(id);
+        heaterDao.deleteById(id);
     }
 }

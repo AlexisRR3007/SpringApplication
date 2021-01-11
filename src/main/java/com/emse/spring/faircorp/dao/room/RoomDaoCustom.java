@@ -1,4 +1,4 @@
-package com.emse.spring.faircorp.dao;
+package com.emse.spring.faircorp.dao.room;
 
 
 import com.emse.spring.faircorp.model.Room;
@@ -6,5 +6,5 @@ import com.emse.spring.faircorp.model.Room;
 import java.util.List;
 
 public interface RoomDaoCustom {
-    List<Room> findRoomByName(String name);
+    Room getRoomByName(String name);
 }

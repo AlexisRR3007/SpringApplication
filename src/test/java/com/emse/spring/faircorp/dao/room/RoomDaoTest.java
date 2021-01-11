@@ -1,8 +1,7 @@
-package com.emse.spring.faircorp.dao;
+package com.emse.spring.faircorp.dao.room;
 
+import com.emse.spring.faircorp.dao.room.RoomDao;
 import com.emse.spring.faircorp.model.Room;
-import com.emse.spring.faircorp.model.Window;
-import com.emse.spring.faircorp.model.WindowStatus;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ class RoomDaoTest {
 
     @Test
     public void shouldFindARoomByName() {
-        List<Room> result = roomDao.findRoomByName("Room1");
+        List<Room> result = roomDao.getRoomByName("Room1");
         Assertions.assertThat(result).hasSize(1)
                 .extracting("id", "floor")
                 .containsExactly(Tuple.tuple(-10L, 1));

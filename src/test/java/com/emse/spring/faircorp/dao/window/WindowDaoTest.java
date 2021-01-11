@@ -1,5 +1,6 @@
-package com.emse.spring.faircorp.dao;
+package com.emse.spring.faircorp.dao.window;
 
+import com.emse.spring.faircorp.dao.window.WindowDao;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 import org.assertj.core.api.Assertions;
@@ -27,7 +28,7 @@ class WindowDaoTest {
 
     @Test
     public void shouldFindRoomOpenWindows() {
-        List<Window> result = windowDao.findRoomOpenWindows(-9L);
+        List<Window> result = windowDao.getOpenWindowsOfRoom(-9L);
         Assertions.assertThat(result).hasSize(1)
                 .extracting("id", "windowStatus")
                 .containsExactly(Tuple.tuple(-8L, WindowStatus.OPEN));
@@ -35,21 +36,21 @@ class WindowDaoTest {
 
     @Test
     public void shouldNotFindRoomOpenWindows() {
-        List<Window> result = windowDao.findRoomOpenWindows(-10L);
+        List<Window> result = windowDao.getOpenWindowsOfRoom(-10L);
         Assertions.assertThat(result).isEmpty();
     }
 
     @Test
     public void shouldDeleteAllWindowsFromARoom() {
-        windowDao.deleteAllWindowsFromARoom(-10L);
-        List<Window> result = windowDao.getAllWindowsFromARoom(-10L);
+        windowDao.deleteAllWindowsOfRoom(-10L);
+        List<Window> result = windowDao.getAllWindowsOfRoom(-10L);
         Assertions.assertThat(result).isEmpty();
     }
 
     @Test
     public void shouldDeleteAllWindowsFromARoomFromWindowDao() {
-        windowDao.deleteAllWindowsFromARoomFromWindowDao(-10L);
-        List<Window> result = windowDao.getAllWindowsFromARoom(-10L);
+        windowDao.deleteAllWindowsOfRoom(-10L);
+        List<Window> result = windowDao.getAllWindowsOfRoom(-10L);
         Assertions.assertThat(result).isEmpty();
     }
 }
