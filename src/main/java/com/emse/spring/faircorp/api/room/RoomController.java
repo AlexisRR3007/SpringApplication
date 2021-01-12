@@ -87,4 +87,56 @@ public class RoomController {
 
         return new RoomDto(room);
     }
+
+    @PutMapping(path = "/{id}/closeAllWindows")
+    public RoomDto closeWindows(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        List<Window> windowSet = windowDao.getAllWindowsOfRoom(id);
+
+        windowSet.forEach((temp) -> {
+            temp.setWindowStatus(WindowStatus.CLOSED);
+        });
+
+        return new RoomDto(room);
+    }
+
+    @PutMapping(path = "/{id}/openAllWindows")
+    public RoomDto openWindows(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        List<Window> windowSet = windowDao.getAllWindowsOfRoom(id);
+
+        windowSet.forEach((temp) -> {
+            temp.setWindowStatus(WindowStatus.OPEN);
+        });
+
+        return new RoomDto(room);
+    }
+
+    @PutMapping(path = "/{id}/offAllHeaters")
+    public RoomDto offHeaters(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        List<Heater> heaterSet = heaterDao.getAllHeatersOfRoom(id);
+
+        heaterSet.forEach((temp) -> {
+            temp.setHeaterStatus(HeaterStatus.OFF);
+        });
+
+        return new RoomDto(room);
+    }
+
+    @PutMapping(path = "/{id}/onAllHeaters")
+    public RoomDto onHeaters(@PathVariable Long id) {
+        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        List<Heater> heaterSet = heaterDao.getAllHeatersOfRoom(id);
+
+        heaterSet.forEach((temp) -> {
+            temp.setHeaterStatus(HeaterStatus.ON);
+        });
+
+        return new RoomDto(room);
+    }
 }
