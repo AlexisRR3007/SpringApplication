@@ -8,6 +8,8 @@ public interface WindowDaoCustom {
 
     List<Window> getOpenWindowsOfRoom(Long id);
 
+    List<Window> getClosedWindowsOfRoom(Long id);
+
     List<Window> getAllWindowsOfRoom(Long RoomId);
 
 }

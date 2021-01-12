@@ -1,5 +1,7 @@
 package com.emse.spring.faircorp.api.room;
 
+import com.emse.spring.faircorp.api.heater.HeaterDto;
+import com.emse.spring.faircorp.api.window.WindowDto;
 import com.emse.spring.faircorp.dao.floor.FloorDao;
 import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.dao.room.RoomDao;
@@ -38,6 +40,26 @@ public class RoomController {
     @GetMapping(path = "/{id}")
     public RoomDto findById(@PathVariable Long id) {
         return roomDao.findById(id).map(RoomDto::new).orElse(null);
+    }
+
+    @GetMapping(path = "/{id}/heatersOn")
+    public List<HeaterDto> findHeatersOn(@PathVariable Long id) {
+        return heaterDao.getOnHeatersOfRoom(id).stream().map(HeaterDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/{id}/heatersOff")
+    public List<HeaterDto> findHeatersOff(@PathVariable Long id) {
+        return heaterDao.getOffHeatersOfRoom(id).stream().map(HeaterDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/{id}/windowsOpen")
+    public List<WindowDto> findWindowsOn(@PathVariable Long id) {
+        return windowDao.getOpenWindowsOfRoom(id).stream().map(WindowDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/{id}/windowsClosed")
+    public List<WindowDto> findWindowsOff(@PathVariable Long id) {
+        return windowDao.getClosedWindowsOfRoom(id).stream().map(WindowDto::new).collect(Collectors.toList());
     }
 
     @PostMapping
