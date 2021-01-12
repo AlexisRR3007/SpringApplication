@@ -5,7 +5,7 @@ import com.emse.spring.faircorp.model.Room;
 public class RoomCommand {
     private Long id;
     private String name;
-    private int floorNumber;
+    private Long floorId;
     private Double currentTemperature;
     private Double targetTemperature;
 
@@ -15,7 +15,7 @@ public class RoomCommand {
     public RoomCommand(Room room) {
         this.id = room.getId();
         this.name = room.getName();
-        this.floorNumber = room.getFloor().getFloorNumber();
+        this.floorId = room.getFloor().getId();
         this.currentTemperature = room.getCurrentTemperature();
         this.targetTemperature = room.getTargetTemperature();
     }
@@ -36,12 +36,12 @@ public class RoomCommand {
         this.name = name;
     }
 
-    public int getFloorNumber() {
-        return floorNumber;
+    public Long getFloorId() {
+        return floorId;
     }
 
-    public void setFloorNumber(int floorNumber) {
-        this.floorNumber = floorNumber;
+    public void setFloorId(Long floorId) {
+        this.floorId = floorId;
     }
 
     public Double getCurrentTemperature() {

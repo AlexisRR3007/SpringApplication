@@ -1,6 +1,5 @@
 package com.emse.spring.faircorp.api.window;
 
-import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 
@@ -8,7 +7,7 @@ public class WindowCommand {
     private Long id;
     private String name;
     private WindowStatus windowStatus;
-    private String roomName;
+    private Long roomId;
 
     public WindowCommand() {
     }
@@ -17,7 +16,7 @@ public class WindowCommand {
         this.id = window.getId();
         this.name = window.getName();
         this.windowStatus = window.getWindowStatus();
-        this.roomName = window.getRoom().getName();
+        this.roomId = window.getRoom().getId();
     }
 
     public Long getId() {
@@ -44,11 +43,11 @@ public class WindowCommand {
         this.windowStatus = windowStatus;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public Long getRoomId() {
+        return roomId;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 }

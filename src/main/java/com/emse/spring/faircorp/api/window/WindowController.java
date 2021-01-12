@@ -45,7 +45,7 @@ public class WindowController {
     @PostMapping
     public WindowDto create(@RequestBody WindowCommand cmd) {
         // WindowDto must always contain the window room
-        Room room = roomDao.getRoomByName(cmd.getRoomName());
+        Room room = roomDao.findById(cmd.getRoomId()).orElseThrow(IllegalArgumentException::new);
         Window window = null;
         // On creation id is not defined
         if (cmd.getId() == null) {

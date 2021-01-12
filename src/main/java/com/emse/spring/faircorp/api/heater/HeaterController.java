@@ -46,7 +46,7 @@ public class HeaterController {
     @PostMapping
     public HeaterDto create(@RequestBody HeaterCommand cmd) {
         // HeaterDto must always contain the heater room
-        Room room = roomDao.getRoomByName(cmd.getRoomName());
+        Room room = roomDao.findById(cmd.getRoomId()).orElseThrow(IllegalArgumentException::new);
         Heater heater = null;
         // On creation id is not defined
         if (cmd.getId() == null) {

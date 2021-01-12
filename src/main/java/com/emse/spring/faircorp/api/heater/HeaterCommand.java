@@ -7,7 +7,7 @@ public class HeaterCommand {
     private Long id;
     private String name;
     private HeaterStatus heaterStatus;
-    private String roomName;
+    private Long roomId;
 
     public HeaterCommand() {
     }
@@ -16,7 +16,7 @@ public class HeaterCommand {
         this.id = heater.getId();
         this.name = heater.getName();
         this.heaterStatus = heater.getHeaterStatus();
-        this.roomName = heater.getRoom().getName();
+        this.roomId = heater.getRoom().getId();
     }
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class HeaterCommand {
         this.heaterStatus = heaterStatus;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public Long getRoomId() {
+        return roomId;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 }

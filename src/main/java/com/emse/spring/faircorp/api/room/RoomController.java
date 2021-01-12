@@ -9,9 +9,7 @@ import com.emse.spring.faircorp.model.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,7 +43,7 @@ public class RoomController {
     @PostMapping
     public RoomDto create(@RequestBody RoomCommand cmd) {
 
-        Floor floor = floorDao.getFloorByFloorNumber(cmd.getFloorNumber());
+        Floor floor = floorDao.findById(cmd.getFloorId()).orElseThrow(IllegalArgumentException::new);
         Room room = null;
         if (cmd.getId() == null) {
             room = roomDao.save(new Room(floor, cmd.getName(), cmd.getCurrentTemperature(), cmd.getTargetTemperature()));
@@ -68,7 +66,7 @@ public class RoomController {
     public RoomDto switchStatusOfWindow(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
 
-        List<Window> windowSet = windowDao.findAll();
+        List<Window> windowSet = windowDao.getAllWindowsOfRoom(id);
 
         windowSet.forEach((temp) -> {
             temp.setWindowStatus(temp.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
@@ -81,7 +79,7 @@ public class RoomController {
     public RoomDto switchStatusOfHeater(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
 
-        List<Heater> heaterSet = heaterDao.findAll();
+        List<Heater> heaterSet = heaterDao.getAllHeatersOfRoom(id);
 
         heaterSet.forEach((temp) -> {
             temp.setHeaterStatus(temp.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
