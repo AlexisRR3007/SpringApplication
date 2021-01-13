@@ -1,14 +1,20 @@
 package com.emse.spring.faircorp.api.floor;
 
+import com.emse.spring.faircorp.api.building.BuildingCommand;
+import com.emse.spring.faircorp.api.building.BuildingDto;
+import com.emse.spring.faircorp.api.room.RoomDto;
 import com.emse.spring.faircorp.dao.building.BuildingDao;
 import com.emse.spring.faircorp.dao.floor.FloorDao;
 import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.dao.room.RoomDao;
 import com.emse.spring.faircorp.dao.window.WindowDao;
 import com.emse.spring.faircorp.model.Building;
+import com.emse.spring.faircorp.model.Floor;
+import com.emse.spring.faircorp.model.Room;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,107 +43,40 @@ public class FloorController {
         return floorDao.findAll().stream().map(FloorDto::new).collect(Collectors.toList());
     }
 
-//    @GetMapping(path = "/{id}")
-//    public FloorDto findById(@PathVariable Long id) {
-//        return buildingDao.findById(id).map(FloorDto::new).orElse(null);
-//    }
-//
-//    @PostMapping
-//    public FloorDto create(@RequestBody FloorCommand cmd) {
-//
-//        Building building = null;
-//        if (cmd.getId() == null) {
-//            building = buildingDao.save(new Building(cmd.getName()));
-//        }
-//        return new FloorDto(building);
-//    }
-//
-//    @DeleteMapping(path = "/{id}")
-//    public void delete (@PathVariable Long id){
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        heaterDao.deleteAllHeatersOfBuilding(id);
-//
-//        windowDao.deleteAllWindowsOfBuilding(id);
-//
-//        buildingDao.deleteById(id);
-//    }
-//
-//    @PutMapping(path = "/{id}/switchWindow")
-//    public FloorDto switchStatusOfWindow(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Window> windowSet = windowDao.getAllWindowsOfBuilding(id);
-//
-//        windowSet.forEach((temp) -> {
-//            temp.setWindowStatus(temp.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
-//        });
-//
-//        return new FloorDto(building);
-//    }
-//
-//    @PutMapping(path = "/{id}/switchHeater")
-//    public FloorDto switchStatusOfHeater(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Heater> heaterSet = heaterDao.getAllHeatersOfBuilding(id);
-//
-//        heaterSet.forEach((temp) -> {
-//            temp.setHeaterStatus(temp.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
-//        });
-//
-//        return new FloorDto(building);
-//    }
-//
-//    @PutMapping(path = "/{id}/closeAllWindows")
-//    public FloorDto closeWindows(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Window> windowSet = windowDao.getAllWindowsOfBuilding(id);
-//
-//        windowSet.forEach((temp) -> {
-//            temp.setWindowStatus(WindowStatus.CLOSED);
-//        });
-//
-//        return new FloorDto(building);
-//    }
-//
-//    @PutMapping(path = "/{id}/openAllWindows")
-//    public FloorDto openWindows(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Window> windowSet = windowDao.getAllWindowsOfBuilding(id);
-//
-//        windowSet.forEach((temp) -> {
-//            temp.setWindowStatus(WindowStatus.OPEN);
-//        });
-//
-//        return new FloorDto(building);
-//    }
-//
-//    @PutMapping(path = "/{id}/offAllHeaters")
-//    public FloorDto offHeaters(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Heater> heaterSet = heaterDao.getAllHeatersOfBuilding(id);
-//
-//        heaterSet.forEach((temp) -> {
-//            temp.setHeaterStatus(HeaterStatus.OFF);
-//        });
-//
-//        return new FloorDto(building);
-//    }
-//
-//    @PutMapping(path = "/{id}/onAllHeaters")
-//    public FloorDto onHeaters(@PathVariable Long id) {
-//        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
-//
-//        List<Heater> heaterSet = heaterDao.getAllHeatersOfBuilding(id);
-//
-//        heaterSet.forEach((temp) -> {
-//            temp.setHeaterStatus(HeaterStatus.ON);
-//        });
-//
-//        return new FloorDto(building);
-//    }
+    @GetMapping(path = "/{id}")
+    public FloorDto findById(@PathVariable Long id) {
+        return floorDao.findById(id).map(FloorDto::new).orElse(null);
+    }
+
+    @PostMapping
+    public FloorDto create(@RequestBody FloorCommand cmd) {
+
+        Building building = buildingDao.findById(cmd.getBuildingId()).orElseThrow(IllegalArgumentException::new);
+        Floor floor = null;
+        if (cmd.getId() == null) {
+            floor = floorDao.save(new Floor(cmd.getFloorNumber(), cmd.getTargetTemperature(), building));
+        }
+        return new FloorDto(floor);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void delete (@PathVariable Long id){
+
+        List<Room> roomList = roomDao.getAllRoomsOfFloor(id);
+        Iterator roomIterator = roomList.iterator();
+
+        while (roomIterator.hasNext())
+        {
+            Room room = (Room)roomIterator.next();
+            heaterDao.deleteAllHeatersOfRoom(room.getId());
+            windowDao.deleteAllWindowsOfRoom(room.getId());
+        }
+
+        roomDao.deleteAllRoomsOfFloor(id);
+
+
+        floorDao.deleteById(id);
+
+    }
+
 }

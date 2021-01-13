@@ -13,6 +13,9 @@ public interface FloorDao  extends JpaRepository<Floor, Long> {
     @Query("Select f FROM Floor f WHERE f.floorNumber = ?1")
     Floor getFloorByFloorNumber(int FloorNumber);
 
+    @Query("Select f FROM Floor f WHERE f.building.id = ?1")
+    List<Floor> getAllFloorsOfBuilding(Long BuildingId);
+
     @Modifying
     @Query("DELETE FROM Floor f WHERE f.building.id = ?1")
     void deleteAllFloorsOfBuilding(Long BuildingId);

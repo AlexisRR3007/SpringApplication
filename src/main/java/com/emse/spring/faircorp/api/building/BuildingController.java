@@ -10,6 +10,7 @@ import com.emse.spring.faircorp.model.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,13 +56,25 @@ public class BuildingController {
 
     @DeleteMapping(path = "/{id}")
     public void delete (@PathVariable Long id){
-        Building building = buildingDao.findById(id).orElseThrow(IllegalArgumentException::new);
 
-        heaterDao.deleteAllHeatersOfBuilding(id);
+        List<Floor> floorList = floorDao.getAllFloorsOfBuilding(id);
+        Iterator floorIterator = floorList.iterator();
 
-        windowDao.deleteAllWindowsOfBuilding(id);
+        while (floorIterator.hasNext())
+        {
+            Floor floor = (Floor)floorIterator.next();
+            List<Room> roomList = roomDao.getAllRoomsOfFloor(floor.getId());
+            Iterator roomIterator = roomList.iterator();
 
-        roomDao.deleteAllRoomsOfBuilding(id);
+            while (roomIterator.hasNext())
+            {
+                Room room = (Room)roomIterator.next();
+                heaterDao.deleteAllHeatersOfRoom(room.getId());
+                windowDao.deleteAllWindowsOfRoom(room.getId());
+            }
+
+            roomDao.deleteAllRoomsOfFloor(floor.getId());
+        }
 
         floorDao.deleteAllFloorsOfBuilding(id);
 

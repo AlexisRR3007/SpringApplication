@@ -85,8 +85,6 @@ public class RoomController {
 
     @DeleteMapping(path = "/{id}")
     public void delete (@PathVariable Long id){
-        Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
-
         heaterDao.deleteAllHeatersOfRoom(id);
 
         windowDao.deleteAllWindowsOfRoom(id);

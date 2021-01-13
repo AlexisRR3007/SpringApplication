@@ -14,26 +14,26 @@ INSERT INTO TFLOOR(id,floor_number, target_temperature, building_id) VALUES(-4,1
 INSERT INTO TFLOOR(id,floor_number, target_temperature, building_id) VALUES(-3,2,20,-8);
 
 
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-1, 'Room1', -10, 22.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id) VALUES(-2, 'Room2', -10);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-3, 'Room3', -9, 22.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-4, 'Room4', -9, 25.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-5, 'Room5', -8, 26.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-6, 'Room6', -7, 21.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-7, 'Room7', -6, 28.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-8, 'Room8', -5, 21.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-9, 'Room9', -5, 20.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-10, 'Room10', -4, 20.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-11, 'Room11', -3, 20.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-12, 'Room12', -3, 19.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-13, 'Room13', -3, 18.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-14, 'Room14', -10, 17.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-15, 'Room15', -9, 18.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-16, 'Room16', -8, 20.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-17, 'Room17', -7, 20.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-18, 'Room18', -6, 21.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-19, 'Room19', -6, 23.3, 20.0);
-INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-20, 'Room20', -9, 24.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-1, 'Room20', -10, 22.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id) VALUES(-2, 'Room19', -10);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-3, 'Room18', -9, 22.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-4, 'Room17', -9, 25.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-5, 'Room16', -8, 26.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-6, 'Room15', -7, 21.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-7, 'Room14', -6, 28.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-8, 'Room13', -5, 21.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-9, 'Room12', -5, 20.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-10, 'Room11', -4, 20.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-11, 'Room10', -3, 20.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-12, 'Room9', -3, 19.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-13, 'Room8', -3, 18.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-14, 'Room7', -10, 17.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-15, 'Room6', -9, 18.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-16, 'Room5', -8, 20.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-17, 'Room4', -7, 20.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-18, 'Room3', -6, 21.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-19, 'Room2', -6, 23.3, 20.0);
+INSERT INTO TROOM(id, name, floor_id, current_temperature, target_temperature) VALUES(-20, 'Room1', -9, 24.3, 20.0);
 
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-1, 'ON', 'Heater30', 2000, -1);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-2, 'OFF', 'Heater29', 2000, -2);
