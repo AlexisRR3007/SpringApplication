@@ -42,6 +42,16 @@ public class RoomController {
         return roomDao.findById(id).map(RoomDto::new).orElse(null);
     }
 
+    @GetMapping(path = "/{id}/heaters")
+    public List<HeaterDto> findHeaters(@PathVariable Long id) {
+        return heaterDao.getAllHeatersOfRoom(id).stream().map(HeaterDto::new).collect(Collectors.toList());
+    }
+
+    @GetMapping(path = "/{id}/windows")
+    public List<WindowDto> findWindows(@PathVariable Long id) {
+        return windowDao.getAllWindowsOfRoom(id).stream().map(WindowDto::new).collect(Collectors.toList());
+    }
+
     @GetMapping(path = "/{id}/heatersOn")
     public List<HeaterDto> findHeatersOn(@PathVariable Long id) {
         return heaterDao.getOnHeatersOfRoom(id).stream().map(HeaterDto::new).collect(Collectors.toList());
