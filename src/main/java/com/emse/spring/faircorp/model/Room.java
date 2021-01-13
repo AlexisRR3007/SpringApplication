@@ -1,7 +1,6 @@
 package com.emse.spring.faircorp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class Room {
     @ManyToOne(optional = false)
     private Floor floor;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String name;
 
     @Column

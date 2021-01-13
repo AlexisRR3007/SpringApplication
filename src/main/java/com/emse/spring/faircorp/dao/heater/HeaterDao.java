@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Dao for the heaters
+ */
 public interface HeaterDao extends JpaRepository<Heater, Long> {
 
     @Query("Select h from Heater h where h.id = ?1")

@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ * Implementation of our customDao for windows
+ */
 public class WindowDaoCustomImpl implements WindowDaoCustom {
 
     @PersistenceContext
@@ -37,4 +40,5 @@ public class WindowDaoCustomImpl implements WindowDaoCustom {
                 .setParameter("id", RoomId)
                 .getResultList();
     }
+
 }

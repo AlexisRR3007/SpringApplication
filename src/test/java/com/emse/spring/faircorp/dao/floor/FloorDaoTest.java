@@ -1,25 +1,25 @@
 package com.emse.spring.faircorp.dao.floor;
 
-import com.emse.spring.faircorp.dao.floor.FloorDao;
 import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.dao.room.RoomDao;
 import com.emse.spring.faircorp.dao.window.WindowDao;
 import com.emse.spring.faircorp.model.Floor;
-import com.emse.spring.faircorp.model.Heater;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.servlet.annotation.WebInitParam;
 import java.util.List;
 
+/**
+ * Test of the FloorDao
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class FloorDaoTest {
+
     @Autowired
     private FloorDao floorDao;
     @Autowired
@@ -74,11 +74,14 @@ class FloorDaoTest {
         windowDao.deleteAllWindowsOfRoom(-5L);
         windowDao.deleteAllWindowsOfRoom(-16L);
 
+        // Rooms
         roomDao.deleteAllRoomsOfFloor(-10L);
         roomDao.deleteAllRoomsOfFloor(-9L);
         roomDao.deleteAllRoomsOfFloor(-8L);
+
         floorDao.deleteAllFloorsOfBuilding(-10L);
         List<Floor> result = floorDao.getAllFloorsOfBuilding(-10L);
         Assertions.assertThat(result).isEmpty();
     }
+
 }

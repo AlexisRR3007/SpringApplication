@@ -11,6 +11,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * RestController for the windows
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/api/windows")
@@ -37,29 +40,34 @@ public class WindowController {
 
     @PutMapping(path = "/{id}/switch")
     public WindowDto switchStatus(@PathVariable Long id) {
+
         Window window = windowDao.findById(id).orElseThrow(IllegalArgumentException::new);
-        window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
+        window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED : WindowStatus.OPEN);
         return new WindowDto(window);
+
     }
 
     @PostMapping
     public WindowDto create(@RequestBody WindowCommand cmd) {
+
         // WindowDto must always contain the window room
         Room room = roomDao.findById(cmd.getRoomId()).orElseThrow(IllegalArgumentException::new);
         Window window = null;
         // On creation id is not defined
         if (cmd.getId() == null) {
-            window = windowDao.save(new Window(cmd.getName(), cmd.getWindowStatus(),room));
-        }
-        else {
+            window = windowDao.save(new Window(cmd.getName(), cmd.getWindowStatus(), room));
+        } else {
             window = windowDao.getWindow(cmd.getId());
             window.setWindowStatus(cmd.getWindowStatus());
         }
+
         return new WindowDto(window);
+
     }
 
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable Long id) {
         windowDao.deleteById(id);
     }
+
 }

@@ -4,9 +4,11 @@ import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Floor;
 import com.emse.spring.faircorp.model.Room;
 
-import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * FloorDto which carries between processes
+ */
 public class FloorDto {
 
     private Long id;
@@ -65,4 +67,5 @@ public class FloorDto {
     public void setListOfRooms(Set<Room> listOfRooms) {
         this.listOfRooms = listOfRooms;
     }
+
 }

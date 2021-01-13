@@ -14,10 +14,10 @@ public class Heater {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private HeaterStatus heaterStatus;
 

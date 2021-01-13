@@ -1,12 +1,12 @@
 package com.emse.spring.faircorp.api.floor;
 
-import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Floor;
-import com.emse.spring.faircorp.model.Room;
 
-import javax.persistence.*;
-import java.util.Set;
-
+/**
+ * FloorCommand is a simplified FloorDto which is used when a user
+ * need to create a floor. He does not have to give a full building, just the Id
+ * He does not have to give the rooms
+ */
 public class FloorCommand {
 
     private Long id;

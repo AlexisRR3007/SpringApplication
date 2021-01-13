@@ -18,7 +18,7 @@ public class Floor {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private int floorNumber;
 
     @Column

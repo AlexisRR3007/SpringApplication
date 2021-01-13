@@ -1,13 +1,8 @@
 package com.emse.spring.faircorp.dao.window;
 
-import com.emse.spring.faircorp.dao.heater.HeaterDao;
-import com.emse.spring.faircorp.dao.window.WindowDao;
-import com.emse.spring.faircorp.model.Heater;
-import com.emse.spring.faircorp.model.HeaterStatus;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +11,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+/**
+ * Test of the WindowDao
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class WindowDaoTest {
+
     @Autowired
     private WindowDao windowDao;
 
@@ -53,4 +52,5 @@ class WindowDaoTest {
         List<Window> result = windowDao.getAllWindowsOfRoom(-2L);
         Assertions.assertThat(result).isEmpty();
     }
+
 }

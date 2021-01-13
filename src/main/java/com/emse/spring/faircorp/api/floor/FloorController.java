@@ -1,8 +1,5 @@
 package com.emse.spring.faircorp.api.floor;
 
-import com.emse.spring.faircorp.api.building.BuildingCommand;
-import com.emse.spring.faircorp.api.building.BuildingDto;
-import com.emse.spring.faircorp.api.room.RoomDto;
 import com.emse.spring.faircorp.dao.building.BuildingDao;
 import com.emse.spring.faircorp.dao.floor.FloorDao;
 import com.emse.spring.faircorp.dao.heater.HeaterDao;
@@ -18,6 +15,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * RestController for the floor
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/api/floors")
@@ -57,23 +57,22 @@ public class FloorController {
             floor = floorDao.save(new Floor(cmd.getFloorNumber(), cmd.getTargetTemperature(), building));
         }
         return new FloorDto(floor);
+
     }
 
     @DeleteMapping(path = "/{id}")
-    public void delete (@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
 
         List<Room> roomList = roomDao.getAllRoomsOfFloor(id);
         Iterator roomIterator = roomList.iterator();
 
-        while (roomIterator.hasNext())
-        {
-            Room room = (Room)roomIterator.next();
+        while (roomIterator.hasNext()) {
+            Room room = (Room) roomIterator.next();
             heaterDao.deleteAllHeatersOfRoom(room.getId());
             windowDao.deleteAllWindowsOfRoom(room.getId());
         }
 
         roomDao.deleteAllRoomsOfFloor(id);
-
 
         floorDao.deleteById(id);
 

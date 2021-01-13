@@ -1,11 +1,13 @@
 package com.emse.spring.faircorp.api.building;
 
 import com.emse.spring.faircorp.model.Building;
-import com.emse.spring.faircorp.model.Floor;
 
-import java.util.Set;
-
+/**
+ * BuildingCommand is a simplified BuildingDto which is used when a user
+ * need to create a building. He does not have to give floors
+ */
 public class BuildingCommand {
+
     private Long id;
     private String name;
 

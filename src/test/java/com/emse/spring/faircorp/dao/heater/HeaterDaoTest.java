@@ -1,6 +1,5 @@
 package com.emse.spring.faircorp.dao.heater;
 
-import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
 import org.assertj.core.api.Assertions;
@@ -12,9 +11,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+/**
+ * Test of the HeaterDao
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class HeaterDaoTest {
+
     @Autowired
     private HeaterDao heaterDao;
 
@@ -49,4 +52,5 @@ class HeaterDaoTest {
         List<Heater> result = heaterDao.getAllHeatersOfRoom(-2L);
         Assertions.assertThat(result).isEmpty();
     }
+
 }

@@ -1,10 +1,14 @@
 package com.emse.spring.faircorp.api.heater;
 
-import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
+import com.emse.spring.faircorp.model.Room;
 
+/**
+ * FloorDto which carries between processes
+ */
 public class HeaterDto {
+
     private Long id;
     private String name;
     private HeaterStatus heaterStatus;
@@ -51,4 +55,5 @@ public class HeaterDto {
     public void setRoom(Room roomName) {
         this.room = room;
     }
+
 }

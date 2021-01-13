@@ -3,6 +3,10 @@ package com.emse.spring.faircorp.api.heater;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
 
+/**
+ * HeaterCommand is a simplified HeaterDto which is used when a user
+ * need to create a heater. He does not have to give a full room, just the ID
+ */
 public class HeaterCommand {
     private Long id;
     private String name;

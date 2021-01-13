@@ -3,7 +3,12 @@ package com.emse.spring.faircorp.api.window;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 
+/**
+ * WindowsCommand is a simplified WindowsDto which is used when a user
+ * need to create a windows. He does not have to give a full room, just the ID
+ */
 public class WindowCommand {
+
     private Long id;
     private String name;
     private WindowStatus windowStatus;

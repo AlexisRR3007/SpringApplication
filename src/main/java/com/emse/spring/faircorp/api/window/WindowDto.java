@@ -4,7 +4,11 @@ import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 
+/**
+ * WindowDto which carries between processes
+ */
 public class WindowDto {
+
     private Long id;
     private String name;
     private WindowStatus windowStatus;
@@ -49,6 +53,6 @@ public class WindowDto {
     }
 
     public void setRoom(Room roomName) {
-        this.room = room;
+        this.room = roomName;
     }
 }

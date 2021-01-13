@@ -1,10 +1,15 @@
 package com.emse.spring.faircorp.api.building;
 
-import com.emse.spring.faircorp.model.*;
+import com.emse.spring.faircorp.model.Building;
+import com.emse.spring.faircorp.model.Floor;
 
 import java.util.Set;
 
+/**
+ * BuildingDto which carries between processes
+ */
 public class BuildingDto {
+
     private Long id;
     private String name;
     private Set<Floor> listOfFloors;
@@ -41,4 +46,5 @@ public class BuildingDto {
     public void setListOfFloors(Set<Floor> listOfFloors) {
         this.listOfFloors = listOfFloors;
     }
+
 }

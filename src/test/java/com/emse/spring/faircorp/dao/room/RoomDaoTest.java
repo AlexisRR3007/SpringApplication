@@ -1,10 +1,8 @@
 package com.emse.spring.faircorp.dao.room;
 
 import com.emse.spring.faircorp.dao.heater.HeaterDao;
-import com.emse.spring.faircorp.dao.room.RoomDao;
 import com.emse.spring.faircorp.dao.window.WindowDao;
 import com.emse.spring.faircorp.model.Room;
-import com.emse.spring.faircorp.model.Window;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.Test;
@@ -15,9 +13,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+/**
+ * Test of the RoomDao
+ */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 class RoomDaoTest {
+
     @Autowired
     private RoomDao roomDao;
     @Autowired
@@ -48,7 +50,7 @@ class RoomDaoTest {
 
     @Test
     public void shouldDeleteAllRoomsOfFloor() {
-// Floor -10
+        // Floor -10
         heaterDao.deleteAllHeatersOfRoom(-1L);
         heaterDao.deleteAllHeatersOfRoom(-2L);
         heaterDao.deleteAllHeatersOfRoom(-14L);
@@ -60,4 +62,5 @@ class RoomDaoTest {
         List<Room> result = roomDao.getAllRoomsOfFloor(-10L);
         Assertions.assertThat(result).isEmpty();
     }
+
 }

@@ -7,7 +7,11 @@ import com.emse.spring.faircorp.model.Window;
 
 import java.util.Set;
 
+/**
+ * RoomDto which carries between processes
+ */
 public class RoomDto {
+
     private Long id;
     private String name;
     private Floor floor;

@@ -1,12 +1,14 @@
 package com.emse.spring.faircorp.dao.room;
 
-import com.emse.spring.faircorp.dao.room.RoomDaoCustom;
 import com.emse.spring.faircorp.model.Room;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ * Implementation of our customDao for rooms
+ */
 public class RoomDaoCustomImpl implements RoomDaoCustom {
 
     @PersistenceContext
@@ -19,4 +21,5 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
                 .setParameter("name", name)
                 .getResultList();
     }
+
 }
