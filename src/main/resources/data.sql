@@ -44,7 +44,7 @@ INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-6, 'ON', 'H
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-7, 'OFF', 'Heater24', 500, -7);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-8, 'OFF', 'Heater23', null, -8);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-9, 'OFF', 'Heater22', 200, -9);
-INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-10, 'OFF', 'Heater21', null, -10);
+INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-10, 'ON', 'Heater21', null, -10);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-11, 'ON', 'Heater20', null, -11);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-12, 'OFF', 'Heater19', null, -12);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-13, 'ON', 'Heater18', null, -13);
@@ -56,7 +56,7 @@ INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-18, 'ON', '
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-19, 'OFF', 'Heater12', 500, -1);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-20, 'OFF', 'Heater11', null, -1);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-21, 'OFF', 'Heater10', null, -2);
-INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-22, 'OFF', 'Heater9', null, -2);
+INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-22, 'ON', 'Heater9', null, -2);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-23, 'OFF', 'Heater8', 2000, -3);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-24, 'ON', 'Heater7', null, -3);
 INSERT INTO THEATER(id, heater_status, name, power, room_id) VALUES(-25, 'OFF', 'Heater6', null, -5);
@@ -76,7 +76,7 @@ INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-6, 'OPEN', 'Window
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-7, 'CLOSED', 'Window24', -7);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-8, 'CLOSED', 'Window23', -8);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-9, 'CLOSED', 'Window22', -9);
-INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-10, 'CLOSED', 'Window21' , -10);
+INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-10, 'OPEN', 'Window21' , -10);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-11, 'OPEN', 'Window20', -11);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-12, 'CLOSED', 'Window19', -12);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-13, 'OPEN', 'Window18', -13);
@@ -87,7 +87,7 @@ INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-17, 'CLOSED', 'Win
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-18, 'OPEN', 'Window13', -18);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-19, 'CLOSED', 'Window12', -1);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-20, 'CLOSED', 'Window11', -1);
-INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-21, 'CLOSED', 'Window10', -2);
+INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-21, 'OPEN', 'Window10', -2);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-22, 'CLOSED', 'Window9', -2);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-23, 'CLOSED', 'Window8', -3);
 INSERT INTO TWINDOW(id, window_status, name, room_id) VALUES(-24, 'OPEN', 'Window7', -3);

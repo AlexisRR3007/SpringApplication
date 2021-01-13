@@ -13,10 +13,10 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
     private EntityManager em;
 
     @Override
-    public Room getRoomByName(String name) {
+    public List<Room> getRoomByName(String name) {
         String jpql = "select r from Room r where r.name = :name";
         return em.createQuery(jpql, Room.class)
                 .setParameter("name", name)
-                .getResultList().get(0);
+                .getResultList();
     }
 }

@@ -1,6 +1,9 @@
 package com.emse.spring.faircorp.dao.window;
 
+import com.emse.spring.faircorp.dao.heater.HeaterDao;
 import com.emse.spring.faircorp.dao.window.WindowDao;
+import com.emse.spring.faircorp.model.Heater;
+import com.emse.spring.faircorp.model.HeaterStatus;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 import org.assertj.core.api.Assertions;
@@ -21,36 +24,33 @@ class WindowDaoTest {
 
     @Test
     public void shouldFindAWindow() {
-        Window window = windowDao.getOne(-10L);
-        Assertions.assertThat(window.getName()).isEqualTo("Window 1");
-        Assertions.assertThat(window.getWindowStatus()).isEqualTo(WindowStatus.CLOSED);
+        Window window = windowDao.getWindow(-10L);
+        Assertions.assertThat(window.getName()).isEqualTo("Window21");
+        Assertions.assertThat(window.getWindowStatus()).isEqualTo(WindowStatus.OPEN);
     }
 
     @Test
-    public void shouldFindRoomOpenWindows() {
-        List<Window> result = windowDao.getOpenWindowsOfRoom(-9L);
-        Assertions.assertThat(result).hasSize(1)
-                .extracting("id", "windowStatus")
-                .containsExactly(Tuple.tuple(-8L, WindowStatus.OPEN));
+    public void shouldFindAllWindowsOfRoom() {
+        List<Window> result = windowDao.getAllWindowsOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(3);
     }
 
     @Test
-    public void shouldNotFindRoomOpenWindows() {
-        List<Window> result = windowDao.getOpenWindowsOfRoom(-10L);
-        Assertions.assertThat(result).isEmpty();
+    public void shouldFindAllOnWindowsOfRoom() {
+        List<Window> result = windowDao.getOpenWindowsOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(1);
     }
 
     @Test
-    public void shouldDeleteAllWindowsFromARoom() {
-        windowDao.deleteAllWindowsOfRoom(-10L);
-        List<Window> result = windowDao.getAllWindowsOfRoom(-10L);
-        Assertions.assertThat(result).isEmpty();
+    public void shouldFindAllOffWindowsOfRoom() {
+        List<Window> result = windowDao.getClosedWindowsOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(2);
     }
 
     @Test
-    public void shouldDeleteAllWindowsFromARoomFromWindowDao() {
-        windowDao.deleteAllWindowsOfRoom(-10L);
-        List<Window> result = windowDao.getAllWindowsOfRoom(-10L);
+    public void shouldDeleteAllWindowsOfRoom() {
+        windowDao.deleteAllWindowsOfRoom(-2L);
+        List<Window> result = windowDao.getAllWindowsOfRoom(-2L);
         Assertions.assertThat(result).isEmpty();
     }
 }

@@ -20,15 +20,33 @@ class HeaterDaoTest {
 
     @Test
     public void shouldFindAHeater() {
-        Heater heater = heaterDao.getOne(-10L);
-        Assertions.assertThat(heater.getName()).isEqualTo("Heater1");
+        Heater heater = heaterDao.getHeater(-10L);
+        Assertions.assertThat(heater.getName()).isEqualTo("Heater21");
         Assertions.assertThat(heater.getHeaterStatus()).isEqualTo(HeaterStatus.ON);
     }
 
     @Test
-    public void shouldDeleteAllHeatersFromARoomFromHeaterDao() {
-        heaterDao.deleteAllHeatersOfRoom(-10L);
-        List<Heater> result = heaterDao.getAllHeatersOfRoom(-10L);
+    public void shouldFindAllHeatersOfRoom() {
+        List<Heater> result = heaterDao.getAllHeatersOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldFindAllOnHeatersOfRoom() {
+        List<Heater> result = heaterDao.getOnHeatersOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldFindAllOffHeatersOfRoom() {
+        List<Heater> result = heaterDao.getOffHeatersOfRoom(-2L);
+        Assertions.assertThat(result.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void shouldDeleteAllHeatersOfRoom() {
+        heaterDao.deleteAllHeatersOfRoom(-2L);
+        List<Heater> result = heaterDao.getAllHeatersOfRoom(-2L);
         Assertions.assertThat(result).isEmpty();
     }
 }
